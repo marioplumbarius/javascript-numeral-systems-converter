@@ -1,14 +1,14 @@
 /**
  * Numeral systems converter.
  */
-function NumeralSystems() {}
+function NumeralSystemsConverter() {}
 
 /**
  * Converts a decimal value to a binary value.
  * @param  {int} input the decimal value to be converted
  * @return {String}       the converted binary value
  */
-NumeralSystems.convertFromDecimalToBinary = function(input) {
+NumeralSystemsConverter.convertFromDecimalToBinary = function(input) {
     var bits = "";
 
     while (input >= 1) {
@@ -27,7 +27,7 @@ NumeralSystems.convertFromDecimalToBinary = function(input) {
  * @param  {String} input the input to be converted
  * @return {int}       the converted decimal
  */
-NumeralSystems.convertToDecimal = function(base, input) {
+NumeralSystemsConverter.convertToDecimal = function(base, input) {
     var input_length = input.length;
     var decimal = 0;
     var power = 0;
@@ -42,7 +42,7 @@ NumeralSystems.convertToDecimal = function(base, input) {
 };
 
 // TODO
-NumeralSystems.convertToHexadecimal = function(base, input) {
+NumeralSystemsConverter.convertToHexadecimal = function(base, input) {
 };
 
 /**
@@ -51,12 +51,12 @@ NumeralSystems.convertToHexadecimal = function(base, input) {
  * @param  {String} binary_two binary number B
  * @return {String}            resulting binary number
  */
-NumeralSystems.binaryAddition = function(binary_one, binary_two){
-    var decimal_one = NumeralSystems.convertToDecimal(2, binary_one);
-    var decimal_two = NumeralSystems.convertToDecimal(2, binary_two);
+NumeralSystemsConverter.binaryAddition = function(binary_one, binary_two){
+    var decimal_one = NumeralSystemsConverter.convertToDecimal(2, binary_one);
+    var decimal_two = NumeralSystemsConverter.convertToDecimal(2, binary_two);
     var decimal_result = decimal_one + decimal_two;
 
-    return NumeralSystems.convertFromDecimalToBinary(decimal_result);
+    return NumeralSystemsConverter.convertFromDecimalToBinary(decimal_result);
 };
 
 /**
@@ -70,12 +70,12 @@ NumeralSystems.binaryAddition = function(binary_one, binary_two){
  * @param  {String} binary_two binary number B
  * @return {String}            resulting binary number
  */
-NumeralSystems.binarySubtraction = function(binary_one, binary_two){
-    var decimal_one = NumeralSystems.convertToDecimal(2, binary_one);
-    var decimal_two = NumeralSystems.convertToDecimal(2, binary_two);
+NumeralSystemsConverter.binarySubtraction = function(binary_one, binary_two){
+    var decimal_one = NumeralSystemsConverter.convertToDecimal(2, binary_one);
+    var decimal_two = NumeralSystemsConverter.convertToDecimal(2, binary_two);
     var decimal_result = decimal_one - decimal_two;
 
-    return NumeralSystems.convertFromDecimalToBinary(decimal_result);
+    return NumeralSystemsConverter.convertFromDecimalToBinary(decimal_result);
 };
 
 /**
@@ -91,7 +91,7 @@ NumeralSystems.binarySubtraction = function(binary_one, binary_two){
  * @param  {String} binary_two binary number B
  * @return {String}            resulting binary number
  */
-NumeralSystems.binarySubtraction2sComplement = function(binary_one, binary_two){
+NumeralSystemsConverter.binarySubtraction2sComplement = function(binary_one, binary_two){
     var result = "";
 
     // converts all bits by its negative equivalent in 2's complement
@@ -101,10 +101,10 @@ NumeralSystems.binarySubtraction2sComplement = function(binary_one, binary_two){
     }
 
     // adds one to the number
-    negativeEquivalentBinatyTwo = NumeralSystems.binaryAddition(negativeEquivalentBinatyTwo, "1");
+    negativeEquivalentBinatyTwo = NumeralSystemsConverter.binaryAddition(negativeEquivalentBinatyTwo, "1");
 
     // sums the two numbers
-    result = NumeralSystems.binaryAddition(binary_one, negativeEquivalentBinatyTwo);
+    result = NumeralSystemsConverter.binaryAddition(binary_one, negativeEquivalentBinatyTwo);
 
     // whenever we have an overflow bit in 2's complement, we discard the extra bit
     if(binary_one.length < result)
